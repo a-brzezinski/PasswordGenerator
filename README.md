@@ -4,8 +4,8 @@ Application build to generate passwords that can contain a special character or 
 
 The application was built using TypeScript
 
-Live Demo available here: 
-
+Live Demo available here: https://passwordgenerator-abrzezinski.netlify.app/
+ 
 ## Getting Started
 
 First of all, you must have installed ```npm```
