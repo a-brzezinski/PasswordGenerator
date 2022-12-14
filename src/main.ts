@@ -83,8 +83,8 @@ const generatePassword = (getFormData: () => {}) => {
 	}
 
 	finalPassword = finalArray!.join('');
-	const validat = validate(finalArray, charactersArray);
-	if (validat) {
+	const valid = validate(finalArray, charactersArray);
+	if (valid) {
 		return;
 	}
 	result.textContent = finalPassword;
