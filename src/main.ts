@@ -24,6 +24,16 @@ import {
 
 // Logic
 
+const validate = (array: string[], characters: string[]): boolean | void => {
+	for (const element of characters) {
+		if (array[0] == element) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+};
+
 const getFormData = (): FormData => {
 	return {
 		length: inputRange.value,
@@ -32,25 +42,19 @@ const getFormData = (): FormData => {
 	};
 };
 
-const includeSpecialCharacters = <T>(
-	specialCharacter: boolean | T,
-	charactersArray: string[]
-): void | number => {
-	if (specialCharacter) {
-		return lettersArray.push(...charactersArray);
-	} else {
-		return;
-	}
+const includeSpecialCharacter = (array: string[]): string[] => {
+	const specialCharactersArray = lettersArray.concat(array);
+	return specialCharactersArray;
 };
 
-const firstLetterCapital = <T>(capitalLetter: boolean | T): boolean =>
-	capitalLetter ? true : false;
+const firtCapitalLetter = (array: string[]): string[] => {
+	const firstLetter = array.shift();
+	const capitalLetter = firstLetter!.toUpperCase();
+	const newArray = [capitalLetter, ...array];
+	return newArray;
+};
 
-const shuffleArray = (
-	array: string[],
-	passwordLength: number,
-	capitalUse: boolean
-): string[] | undefined => {
+const shuffleArray = (array: string[], passwordLength: number): string[] => {
 	let newArray = [...array];
 	const length = newArray.length;
 	for (let i = 0; i < length; i++) {
@@ -59,31 +63,31 @@ const shuffleArray = (
 
 		newArray.push(...randomItem);
 	}
-
-	if (capitalUse) {
-		const firstLetter = newArray.shift();
-		if (firstLetter === '?' || firstLetter === '!') {
-			return;
-		}
-		const capitalLetter = firstLetter!.toUpperCase();
-		newArray.unshift(capitalLetter);
-	} else {
-		newArray.slice(0, passwordLength);
-	}
-
 	return newArray.slice(0, passwordLength);
 };
 
 const generatePassword = (getFormData: () => {}) => {
+	let finalArray: string[] = [...lettersArray];
+	let finalPassword;
 	const data: FormData = getFormData();
 	const { length, specialCharacters, capitalLetter } = data;
 
-	includeSpecialCharacters(specialCharacters, charactersArray);
-	const capital = firstLetterCapital(capitalLetter);
+	if (specialCharacters) {
+		finalArray = includeSpecialCharacter(charactersArray);
+	}
 
-	const shuffledArray = shuffleArray(lettersArray, Number(length), capital);
-	const password = shuffledArray!.join('');
-	result.textContent = password;
+	finalArray = shuffleArray(finalArray, Number(length));
+
+	if (capitalLetter) {
+		finalArray = firtCapitalLetter(finalArray);
+	}
+
+	finalPassword = finalArray!.join('');
+	const validat = validate(finalArray, charactersArray);
+	if (validat) {
+		return;
+	}
+	result.textContent = finalPassword;
 };
 
 form.addEventListener('submit', e => {
