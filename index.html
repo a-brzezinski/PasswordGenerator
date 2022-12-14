@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Password Generator</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>Password Generator 🔑</h1>
+    <form class="form">
+      <div class="form-control">
+        <label for="length">Chose password length</label>
+        <input type="range" name="length" id="length" min="8" max="12"
+          oninput="this.nextElementSibling.value = this.value" />
+        <output>10</output>
+        <!-- <p class="length-value"></p> -->
+      </div>
+      <div class="form-control">
+        <label for="special-characters">Special Characters</label>
+        <input id="special-characters" type="checkbox" />
+      </div>
+      <div class="form-control">
+        <label for="uppercase">Capital Letter</label>
+        <input id="uppercase" type="checkbox" />
+      </div>
+      <button class="button" type="submit">Generate</button>
+    </form>
+    <div class="result">
+      <h3 class="result-heading">Generated Password</h3>
+      <p class="result-password"></p>
+    </div>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
