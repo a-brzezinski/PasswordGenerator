@@ -1,4 +1,6 @@
-# Password Generator <a href=""/> <imt alt="badge" src="https://img.shields.io/badge/version-v1.1.0-green">
+# Password Generator <a href=""/> 
+
+<imt alt="badge" src="https://img.shields.io/badge/version-v1.1.0-green">
 
 Application build to generate passwords that can contain a special character or a capital letter or both.
 
