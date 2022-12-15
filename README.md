@@ -1,5 +1,8 @@
 # Password Generator <a href=""/> 
 
+![This is an image](https://myoctocat.com/assets/images/base-octocat.svg](https://img.shields.io/badge/version-v1.1.0-green)
+<imt alt="badge" src="https://img.shields.io/badge/version-v1.1.0-green">
+
 Application build to generate passwords that can contain a special character or a capital letter or both.
 
 The application was built using TypeScript
